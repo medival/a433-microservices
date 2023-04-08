@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  # Service item-db
+  item-db:
+    image: mongo:3 # Use image mongo with tag 3
+    volumes:
+      - app-db:/data/db # use volume app-db and mount to inside container on path /data/db
+    restart: always # always restart when got error
+
+  # Service item-app
+  item-app:
+    image: ghcr.io/medival/item-app:v1 # Use image item-app with tag v1 from namespace medival at ghcr
+    ports:
+      - "80:80" # expose port at 80
+    depends_on:
+      - item-db # item-app depends on item-db which means this item-app not working unless item-db running and success
+    restart: always # always restart when got error
+
+volumes:
+  app-db: #create app-db volume

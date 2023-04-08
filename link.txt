@@ -1,0 +1,3 @@
+github container registry link
+- https://github.com/users/medival/packages/container/package/item-app
+- ghcr.io/medival/item-app:v1
