@@ -8,10 +8,10 @@ GITHUB_USERNAME="medival" # Set Github Username
 
 
 # Step 1. Go to working directory and build the image
-# cd $WORKDIR && docker build -t $IMAGE_NAME:$TAG $WORKDIR
+docker build -t $IMAGE_NAME:$TAG .
 
 # Step 2. List all local images
-# docker images
+docker images
 
 # Step 3. Tag Image
 docker tag $IMAGE_NAME:$TAG ghcr.io/$GITHUB_USERNAME/$IMAGE_NAME:$TAG 
