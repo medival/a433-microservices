@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: karsajobs-ui
+  name: karsajobs-ui
+spec:
+  ports:
+    - name: karsajobs-ui-service
+      port: 8000
+      targetPort: 8000
+      nodePort: 30800
+  selector:
+    app: karsajobs-ui
+  type: NodePort
+status:
+  loadBalancer: {}

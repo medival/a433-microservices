@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: karsajobs
+  name: karsajobs
+spec:
+  ports:
+    - name: karsajobs-service
+      port: 8080
+      targetPort: 8080
+      nodePort: 30303
+  selector:
+    app: karsajobs
+  type: NodePort
+status:
+  loadBalancer: {}

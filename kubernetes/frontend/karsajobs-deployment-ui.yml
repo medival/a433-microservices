@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: karsajobs-ui
+  name: karsajobs-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: karsajobs-ui
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: karsajobs-ui
+    spec:
+      containers:
+        - image: karsajobs-ui:latest
+          name: karsajobs-ui
+          imagePullPolicy: IfNotPresent
+          resources: {}
+status: {}
