@@ -16,7 +16,7 @@ spec:
         app: karsajobs-ui
     spec:
       containers:
-        - image: karsajobs-ui:latest
+        - image: ghcr.io/medival/karsajobs-ui:latest
           name: karsajobs-ui
           imagePullPolicy: IfNotPresent
           resources: {}
