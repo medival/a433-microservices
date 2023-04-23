@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # Kubernetes API version
+kind: Deployment # Deployment resource
+metadata: # Metadata for the deployment
+  labels: # Labels for the deployment
+    app: shipping-service
+  name: shipping-service # Name of the deployment
+spec: # Deployment specification
+  replicas: 1 # Number of replicas to run
+  selector: # Selector to match the pods controlled by this deployment
+    matchLabels:
+      app: shipping-service
+  strategy: {} # Deployment strategy
+  template: # Template for the pods created by the deployment
+    metadata: # Metadata for the pods
+      labels: # Labels for the pods
+        app: shipping-service
+    spec: # Pod specification
+      containers: # Container specification for the pod
+        - image: ghcr.io/medival/shipping-service:latest # Container image to use
+          name: shipping-service # Name of the container
+status: {}

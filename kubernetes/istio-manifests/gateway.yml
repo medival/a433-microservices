@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3 # Istio API version
+kind: Gateway # Custom CRD from Istio
+metadata:
+  name: microservices-gateway # Name of Gateway object
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80 # use port 80
+        name: http # configure port name as http
+        protocol: HTTP # protocol use HTTP
+      hosts:
+        - "*" # Accept traffic from any host

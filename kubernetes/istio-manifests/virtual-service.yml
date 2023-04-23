@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3 # Istio API version
+kind: VirtualService # Custom CRD from Istio
+metadata:
+  name: microservices # Set VirtualService name
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - microservices-gateway # Use mircroservices-gateway referring to gateway.yml
+  http:
+    - match:
+        - uri:
+            exact: /order # Match requests to /order endpoint
+        - uri:
+            exact: /shipping # Match requests to /shipping endpoint
+      route:
+        - destination:
+            host: order-service # Set destination to host order-service in default namepace
+            port:
+              number: 3000 # at port 3000 reffering to order-service-svc.yml
+          weight: 100 # Set weight to 100%
+        - destination:
+            host: shipping-service # Set destination to host shipping-service in default namepace
+            port:
+              number: 3001 # at port 3001 reffering to shipping-service-svc.yml
+          weight: 100 # Set weight to 100

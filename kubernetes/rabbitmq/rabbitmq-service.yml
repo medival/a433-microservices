@@ -1,0 +1,18 @@
+---
+apiVersion: v1 # Kubernetes API version
+kind: Service # This is a Kubernetes Service object
+metadata:
+  name: rabbitmq # Name of the Service object
+spec:
+  selector:
+    app: rabbitmq # Label selector to match Pods that this Service should route traffic to
+  ports:
+    - name: amqp # Name of the port for AMQP traffic
+      port: 5672 # Port number exposed by the Service for AMQP traffic
+      targetPort: 5672 # Port number that the Service forwards AMQP traffic to
+      nodePort: 30072 # Port number exposed on the worker nodes for AMQP traffic (for NodePort type only)
+    - name: management # Name of the port for management traffic
+      port: 15672 # Port number exposed by the Service for management traffic
+      targetPort: 15672 # Port number that the Service forwards management traffic to
+      nodePort: 30672 # Port number exposed on the worker nodes for management traffic (for NodePort type only)
+  type: NodePort # Type of the Service (in this case, NodePort)

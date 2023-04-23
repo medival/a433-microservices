@@ -1,0 +1,35 @@
+apiVersion: apps/v1 # Kubernetes API version
+kind: StatefulSet # This is a Kubernetes StatefulSet object
+metadata:
+  name: rabbitmq # Name of the StatefulSet object
+spec:
+  replicas: 1 # Number of replicas to create
+  selector:
+    matchLabels:
+      app: rabbitmq # Label selector to match Pods that belong to this StatefulSet
+  serviceName: rabbitmq # Name of the Service to create for this StatefulSet
+  template:
+    metadata:
+      labels:
+        app: rabbitmq # Labels to apply to the Pods created from this StatefulSet
+    spec:
+      containers:
+        - name: rabbitmq # Name of the container
+          image: rabbitmq:3.11-management # Docker image to use for the container
+          ports:
+            - containerPort: 5672 # Port number exposed by the container for AMQP traffic
+              name: amqp # Name of the port for AMQP traffic
+            - containerPort: 15672 # Port number exposed by the container for management traffic
+              name: management # Name of the port for management traffic
+          volumeMounts:
+            - name: rabbitmq-data # Name of the volume to mount
+              mountPath: /var/lib/rabbitmq # Mount path for the volume
+  volumeClaimTemplates:
+    - metadata:
+        name: rabbitmq-data # Name of the volume claim
+      spec:
+        accessModes:
+          - "ReadWriteOnce" # Access mode for the volume
+        resources:
+          requests:
+            storage: 1Gi # Storage size for the volume claim

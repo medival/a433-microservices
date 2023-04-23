@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # Kubernetes API version
+kind: Deployment # This is a Kubernetes Deployment object
+metadata:
+  labels:
+    app: order-service # Labels to identify this Deployment
+  name: order-service # Name of the Deployment object
+spec:
+  replicas: 1 # Number of replicas to create
+  selector:
+    matchLabels:
+      app: order-service # Label selector to match Pods created by this Deployment
+  strategy: {} # Deployment strategy (default is rolling update)
+  template:
+    metadata:
+      labels:
+        app: order-service # Labels to identify Pods created by this Deployment
+    spec:
+      containers:
+        - image: ghcr.io/medival/order-service:latest # Container image to run
+          name: order-service # Name of the container
+status: {}
