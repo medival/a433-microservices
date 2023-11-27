@@ -3,4 +3,7 @@ module.exports = {
     tailwindcss: {},
     autoprefixer: {},
   },
+  devServer: {
+    disableHostCheck: true,
+  },
 }
